@@ -1,6 +1,11 @@
 import java.io.File;
-import java.util.Arrays;
 import java.util.Scanner;
+
+/**
+ * ISBN Validator imports, verifies, and stores ISBN numbers
+ * @version 1/23/23
+ * @author Srao2020
+ */
 
 public class ISBNValidator {
     private String[] validNums;
@@ -15,6 +20,10 @@ public class ISBNValidator {
         app.runProgram();
         System.out.println("* End of Program *");
     }
+
+    /**
+     * simple constructor; initializes arrays
+     */
 
     public ISBNValidator() {
         filename = "isbn_files/isbn1.dat";
@@ -33,6 +42,10 @@ public class ISBNValidator {
         validNums = new String[lines];
         invalidNums = new String[lines];
     }
+
+    /**
+     * imports .dat file, calls isValidISBN method and stores Strings into corresponding arrays
+     */
 
     public void importData() {
         try {
@@ -53,6 +66,12 @@ public class ISBNValidator {
         }
     }
 
+    /**
+     * determines validity of supplied ISBN number; called inside importData
+     * @param isbn An ISBN number to test
+     * @return true if valid, false otherwise
+     */
+
     public boolean isValidISBN(String isbn) {
         if (isbn.startsWith("978") || isbn.startsWith("979")) {
             return true;
@@ -70,11 +89,13 @@ public class ISBNValidator {
         return sum % 10 == 0 ;
     }
 
+    /**
+     * output the user-picked ISBN list or quit the application
+     */
+
     public void runProgram() {
         Scanner in = new Scanner(System.in);
         while (true) {
-            System.out.println(Arrays.toString(validNums));
-
             System.out.println("All ISBN data has been imported and validated. Would you like to:");
             System.out.println("1) View all valid ISBN numbers");
             System.out.println("2) View all invalid ISBN numbers");
